@@ -29,8 +29,14 @@ class UpdateUser extends Command
     public function handle()
     {
         $user = User::find($this->argument('id'));
-        $user->comments .= "\n".$this->argument('comments');
-        $user->save();
+
+        if ($user) {
+            $user->comments .= "\n".$this->argument('comments');
+            $user->save();
+            echo 'Success.';
+        } else {
+            echo 'User not found.';
+        }
         
         return 0;
     }
