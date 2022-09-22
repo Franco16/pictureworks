@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
+use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
@@ -30,6 +31,6 @@ class UserController extends Controller
         $user->comments .= "\n".$request->input('comments');
         $user->save();
 
-        return response()->json($user, 200);
+        return new UserResource($user);
     }
 }

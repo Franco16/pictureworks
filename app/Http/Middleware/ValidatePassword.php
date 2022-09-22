@@ -17,7 +17,11 @@ class ValidatePassword
     public function handle(Request $request, Closure $next)
     {
         if ($request->input('password') !== '720DF6C2482218518FA20FDC52D4DED7ECC043AB') {
-            return response()->json(['error' => 'Unauthenticated'], 401);
+            return response()->json([
+                'error' => [
+                    'message' => 'Unauthenticated'
+                ]
+            ], 401);
         }
 
         return $next($request);
